@@ -1,4 +1,4 @@
-FROM node:slim AS app
+FROM node:slim AS build
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome
