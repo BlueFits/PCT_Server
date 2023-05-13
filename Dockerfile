@@ -1,9 +1,7 @@
 FROM node:14-slim
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable \
-    NODE_ENV=production
-
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 
 RUN apt-get update && apt-get install curl gnupg -y \
     && curl --location --silent https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
@@ -16,9 +14,11 @@ RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
 
+RUN npm install && npm i -g typescript
+
 COPY . .
 
-RUN npm install
+RUN tsc
 
 EXPOSE 3000
 
